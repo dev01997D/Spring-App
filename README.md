@@ -56,3 +56,31 @@ Hello Devnandan Kumar!!
 curl -X GET "http://localhost:8080/hellocontroller/param/Devnandan" -w "\n"
 Hello Devnandan!
 ```
+## Post Method
+### Code
+```
+@PostMapping("/post")
+	public String sayHello(@RequestBody User user) {
+		return "Hello " + user.getfName() + " " + user.getlName() + "!!";
+	}
+```
+
+### Output
+```
+curl -X POST -H "Content-Type: application/json" -d '{"fName": "Devnandan", "lName": "Kumar"}' "http://localhost:8080/hellocontroller/post"
+```
+
+## PUT method
+### Code
+```
+@PutMapping("/put/{fName}")
+	public String sayHelloPut(@PathVariable String fName, @RequestParam(value = "lName") String lName) {
+		return "Hello " + fName + " " + lName + "!!";
+	}
+```
+
+### Output
+```
+curl -X PUT "http://localhost:8080/hellocontroller/put/Devnandan?lName=Kumar" -w "\n"
+Hello Devnandan Kumar!!
+```
